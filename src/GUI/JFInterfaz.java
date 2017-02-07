@@ -13,17 +13,16 @@ package GUI;
  */
 public class JFInterfaz extends javax.swing.JFrame {
 
-    JPMarca jpm = new JPMarca();
+    JPMarca jpma = new JPMarca();
+    JPModelo jpmo = new JPModelo();
 
     /**
      * Creates new form JFInterfaz
      */
     public JFInterfaz() {
         initComponents();
-//        this.getContentPane().add(jpgce);//Cines Empleado
-//        this.getContentPane().add(jpgca);//Cines Administrador
-//        this.getContentPane().add(jpgp);//Peliculas
-        this.getContentPane().add(jpm);//Empleado Administrador
+        this.getContentPane().add(jpma);//Marca
+        this.getContentPane().add(jpmo);//Modelo
         this.setVisible(true);
     }
 
