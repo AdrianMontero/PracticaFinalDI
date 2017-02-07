@@ -13,7 +13,7 @@ package GUI;
  */
 public class JFInterfaz extends javax.swing.JFrame {
 
-    JPInicio jpi = new JPInicio();
+    JPMarca jpm = new JPMarca();
 
     /**
      * Creates new form JFInterfaz
@@ -23,7 +23,7 @@ public class JFInterfaz extends javax.swing.JFrame {
 //        this.getContentPane().add(jpgce);//Cines Empleado
 //        this.getContentPane().add(jpgca);//Cines Administrador
 //        this.getContentPane().add(jpgp);//Peliculas
-        this.getContentPane().add(jpi);//Empleado Administrador
+        this.getContentPane().add(jpm);//Empleado Administrador
         this.setVisible(true);
     }
 
