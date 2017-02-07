@@ -53,15 +53,15 @@
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jbCrearModelo" min="-2" max="-2" attributes="0"/>
                           <Component id="jcbIdMarcaCrear" min="-2" pref="68" max="-2" attributes="0"/>
                           <Component id="jtfNombreModeloCrear" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="jsConsumoCrear" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jsEmisionesModeloCrear" alignment="0" pref="47" max="32767" attributes="0"/>
-                              <Component id="jsConsumoModeloCrear" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jtfEmisionesCrear" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jcbIdEficienciaCrear" alignment="0" pref="65" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jcbIdEficienciaCrear" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="222" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -79,21 +79,23 @@
                           <Component id="jtfNombreModeloCrear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jsConsumoModeloCrear" min="-2" max="-2" attributes="0"/>
+                          <Component id="jsConsumoCrear" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jsEmisionesModeloCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfEmisionesCrear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jcbIdEficienciaCrear" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="81" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jbCrearModelo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -136,10 +138,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jtfNombreModeloCrear">
             </Component>
-            <Component class="javax.swing.JSpinner" name="jsConsumoModeloCrear">
-            </Component>
-            <Component class="javax.swing.JSpinner" name="jsEmisionesModeloCrear">
-            </Component>
             <Component class="javax.swing.JComboBox" name="jcbIdEficienciaCrear">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -149,6 +147,15 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbCrearModelo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear Modelo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSlider" name="jsConsumoCrear">
+            </Component>
+            <Component class="javax.swing.JTextField" name="jtfEmisionesCrear">
             </Component>
           </SubComponents>
         </Container>
@@ -178,28 +185,38 @@
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtfNombreModeloMod" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jsEmisionesModeloMod" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jsConsumoModeloMod" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jcbIdModeloMod" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jcbIdMarcaMod" alignment="0" pref="68" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                              <Component id="jbModificarModelo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jcbIdEficienciaMod" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jcbIdModeloMod" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jcbIdMarcaMod" alignment="0" pref="68" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtfNombreModeloMod" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jtfConsumoMod" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jtfEmisionesMod" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jcbIdEficienciaMod" alignment="0" pref="65" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="224" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jcbIdModeloMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbModificarModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -212,14 +229,14 @@
                           <Component id="jtfNombreModeloMod" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jsConsumoModeloMod" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfConsumoMod" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jsEmisionesModeloMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfEmisionesMod" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -251,10 +268,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Emisiones( gCO2/km):"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="jsEmisionesModeloMod">
-            </Component>
-            <Component class="javax.swing.JSpinner" name="jsConsumoModeloMod">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -297,6 +310,15 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbModificarModelo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar Modelo"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jtfEmisionesMod">
+            </Component>
+            <Component class="javax.swing.JTextField" name="jtfConsumoMod">
             </Component>
           </SubComponents>
         </Container>
@@ -355,7 +377,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="132" max="-2" attributes="0"/>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <EmptySpace pref="44" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -406,7 +428,7 @@
                       <Table columnCount="5" rowCount="0">
                         <Column editable="true" title="Nombre Marca" type="java.lang.String"/>
                         <Column editable="true" title="Nombre Modelo" type="java.lang.String"/>
-                        <Column editable="true" title="Consumo" type="java.lang.Float"/>
+                        <Column editable="true" title="Consumo" type="java.lang.Integer"/>
                         <Column editable="true" title="Emisiones" type="java.lang.Float"/>
                         <Column editable="true" title="Imagen" type="java.lang.Object"/>
                       </Table>
@@ -462,7 +484,7 @@
                           <Component id="jtfNombreModeloBorrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jbBorrrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="184" max="32767" attributes="0"/>
+                      <EmptySpace pref="185" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

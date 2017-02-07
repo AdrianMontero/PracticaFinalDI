@@ -15,7 +15,6 @@ public class JFInterfaz extends javax.swing.JFrame {
 
     JPMarca jpma = new JPMarca();
     JPModelo jpmo = new JPModelo();
-
     /**
      * Creates new form JFInterfaz
      */

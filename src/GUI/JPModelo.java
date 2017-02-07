@@ -36,15 +36,14 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jcbIdMarcaCrear = new javax.swing.JComboBox<>();
         jtfNombreModeloCrear = new javax.swing.JTextField();
-        jsConsumoModeloCrear = new javax.swing.JSpinner();
-        jsEmisionesModeloCrear = new javax.swing.JSpinner();
         jcbIdEficienciaCrear = new javax.swing.JComboBox<>();
+        jbCrearModelo = new javax.swing.JButton();
+        jsConsumoCrear = new javax.swing.JSlider();
+        jtfEmisionesCrear = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jcbIdEficienciaMod = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jsEmisionesModeloMod = new javax.swing.JSpinner();
-        jsConsumoModeloMod = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jtfNombreModeloMod = new javax.swing.JTextField();
@@ -52,6 +51,9 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jcbIdModeloMod = new javax.swing.JComboBox<>();
+        jbModificarModelo = new javax.swing.JButton();
+        jtfEmisionesMod = new javax.swing.JTextField();
+        jtfConsumoMod = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -77,6 +79,8 @@ public class JPModelo extends javax.swing.JPanel {
 
         jLabel5.setText("Id Eficiencia:");
 
+        jbCrearModelo.setText("Crear Modelo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,13 +95,13 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jLabel1))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbCrearModelo)
                     .addComponent(jcbIdMarcaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNombreModeloCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jsEmisionesModeloCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                        .addComponent(jsConsumoModeloCrear, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jcbIdEficienciaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(222, Short.MAX_VALUE))
+                        .addComponent(jtfEmisionesCrear, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jcbIdEficienciaCrear, javax.swing.GroupLayout.Alignment.LEADING, 0, 65, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,18 +115,20 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jtfNombreModeloCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jsConsumoModeloCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jsEmisionesModeloCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfEmisionesCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jcbIdEficienciaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jbCrearModelo)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear Modelo", jPanel1);
@@ -138,6 +144,8 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel10.setText("Id Marca:");
 
         jLabel11.setText("Id Modelo:");
+
+        jbModificarModelo.setText("Modificar Modelo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -155,23 +163,30 @@ public class JPModelo extends javax.swing.JPanel {
                         .addComponent(jLabel10)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfNombreModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jsEmisionesModeloMod, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jsConsumoModeloMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jcbIdEficienciaMod, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jcbIdModeloMod, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jcbIdMarcaMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 68, Short.MAX_VALUE)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jcbIdModeloMod, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbIdMarcaMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 68, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addComponent(jbModificarModelo)
+                        .addGap(74, 74, 74))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfNombreModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jtfConsumoMod, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jtfEmisionesMod, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcbIdEficienciaMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 65, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jcbIdModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbIdModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificarModelo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -181,13 +196,13 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(jtfNombreModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jsConsumoModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jtfConsumoMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jsEmisionesModeloMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfEmisionesMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -214,6 +229,7 @@ public class JPModelo extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -259,7 +275,7 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar Modelo", jPanel3);
@@ -302,7 +318,7 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jtfNombreModeloBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBorrrar))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Borrar Modelo", jPanel4);
@@ -344,6 +360,8 @@ public class JPModelo extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton jbBorrrar;
     private javax.swing.JButton jbConsultar;
+    private javax.swing.JButton jbCrearModelo;
+    private javax.swing.JButton jbModificarModelo;
     private javax.swing.JComboBox<String> jcbIdEficienciaCrear;
     private javax.swing.JComboBox<String> jcbIdEficienciaMod;
     private javax.swing.JComboBox<String> jcbIdMarcaCrear;
@@ -351,11 +369,11 @@ public class JPModelo extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbIdModeloBorrar;
     private javax.swing.JComboBox<String> jcbIdModeloCon;
     private javax.swing.JComboBox<String> jcbIdModeloMod;
-    private javax.swing.JSpinner jsConsumoModeloCrear;
-    private javax.swing.JSpinner jsConsumoModeloMod;
-    private javax.swing.JSpinner jsEmisionesModeloCrear;
-    private javax.swing.JSpinner jsEmisionesModeloMod;
+    private javax.swing.JSlider jsConsumoCrear;
     private javax.swing.JTable jtConsultar;
+    private javax.swing.JTextField jtfConsumoMod;
+    private javax.swing.JTextField jtfEmisionesCrear;
+    private javax.swing.JTextField jtfEmisionesMod;
     private javax.swing.JTextField jtfNombreModeloBorrar;
     private javax.swing.JTextField jtfNombreModeloCon;
     private javax.swing.JTextField jtfNombreModeloCrear;
