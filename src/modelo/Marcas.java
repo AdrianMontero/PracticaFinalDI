@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import core.BDCore;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,9 +15,14 @@ import java.util.ArrayList;
  * @author juanxxiii
  */
 public class Marcas {
-
+    
     private int idMarca;
     private String nombre;
+    
+    //Metodos para interactuar con la BD.
+    private static BDCore bd = new BDCore();
+    private static String sql = null;
+    private static ResultSet rs = null;
 
     // <editor-fold defaultstate="collapsed" desc="Getters">
     public int getIdMarca() {

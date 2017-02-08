@@ -34,7 +34,7 @@ public class BDCore {
     public void conectarSqlite(String localizacionBBDD) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba","dam2015", "dam2015");
+            conexion = DriverManager.getConnection("jdbc:mysql://www.greenmonster.servehttp.com/dipfinal","dam2015", "dam2015");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BDCore.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Problema para encontar la BBDD");
