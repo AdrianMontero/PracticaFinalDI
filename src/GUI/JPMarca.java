@@ -112,6 +112,11 @@ public class JPMarca extends javax.swing.JPanel {
         });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -208,6 +213,16 @@ public class JPMarca extends javax.swing.JPanel {
     private void jcbIdMarcaModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdMarcaModActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbIdMarcaModActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        miMarca.setIdMarca(Integer.parseInt((String) jcbIdMarcaMod.getSelectedItem()));
+        miMarca.setNombre(jtfNombreMarcaMod.getText());
+        try {
+            miMarca.modificarMarca();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -111,7 +111,8 @@ public class Marcas {
         listaMarcas.clear();
         while (res.next()) {
             miMarca = new Marcas();
-            miMarca.setNombre(res.getString("nombre"));
+            miMarca.setIdMarca(res.getInt("id_mar"));
+            miMarca.setNombre(res.getString("nombre_mar"));
 
             listaMarcas.add(miMarca);
         }
@@ -125,8 +126,8 @@ public class Marcas {
      * @param _idMarca
      * @throws SQLException 
      */
-    public void modificarMarca(String nombre, int _idMarca) throws SQLException {
-        bd.actualizarTabla("Update marca set nombre = '"+ nombre + "' where idCine = " + _idMarca);
+    public void modificarMarca() throws SQLException {
+        bd.actualizarTabla("Update marca set nombre_mar = '"+ nombre + "' where id_mar = " + idMarca);
     }
 
     /**
