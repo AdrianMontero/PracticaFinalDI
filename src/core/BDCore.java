@@ -31,16 +31,16 @@ public class BDCore {
      *
      * @param localizacionBBDD Ruta de la ubicacion de la base de datos
      */
-    public void conectarSqlite(String localizacionBBDD) {
+    public void conectarSqlite() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://www.greenmonster.servehttp.com/dipfinal","dam2015", "dam2015");
+            conexion = DriverManager.getConnection("jdbc:mysql://2.138.249.109/dipfinal","dam2015", "dam2015");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(BDCore.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Problema para encontar la BBDD");
         } catch (SQLException ex) {
             Logger.getLogger(BDCore.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Con la BBDD");
+            JOptionPane.showMessageDialog(null, "Problemas con Adrian montero de Espinosa Gutierrez, Cubas de la sagra, C/ Los Madroños,11-1 - CP: 28978 Tel:678874510 Email:adriianmontero@gmail.com");
         }
     }
 
@@ -75,7 +75,7 @@ public class BDCore {
      */
     public ResultSet consultarTabla(String _sql) throws SQLException {
         if (conexion == null) {
-            conectarSqlite("C:/bbdd/bbddCinesFree.db");
+            conectarSqlite();
         }
         stmt = conexion.createStatement();
         //Empezamos a trabajar con la BBDD
@@ -85,7 +85,7 @@ public class BDCore {
 
     public void prueba() throws SQLException {
         if (conexion == null) {
-            conectarSqlite("C:/bbdd/bbddCinesFree.db");
+            conectarSqlite();
         }
         stmt = conexion.createStatement();
         //Empezamos a trabajar con la BBDD
@@ -108,7 +108,7 @@ public class BDCore {
      */
     public void actualizarTabla(String _sql) throws SQLException {
         if (conexion == null) {
-            conectarSqlite("C:/bbdd/bbddCinesFree.db");
+            conectarSqlite();
         }
         stmt = conexion.createStatement();
         //Empezamos a trabajar con la BBDD

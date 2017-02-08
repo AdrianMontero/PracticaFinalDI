@@ -1,5 +1,11 @@
 package GUI;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Marcas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,12 +18,26 @@ package GUI;
  * @author Daniel
  */
 public class JPMarca extends javax.swing.JPanel {
-
+    ArrayList<Marcas> misMarcas = new ArrayList();
+    Marcas miMarca;
     /**
      * Creates new form JPInicio
      */
     public JPMarca() {
         initComponents();
+        String stringId;
+
+        try {
+            Marcas.mostrarMarcas(misMarcas);
+            for (int i = 0; i < misMarcas.size(); i++) {
+                miMarca = (Marcas) misMarcas.get(i);
+                stringId = String.valueOf(miMarca.getIdMarca());
+                System.out.println(stringId);
+                jcbIdMarcaMod.addItem(stringId);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,6 +104,12 @@ public class JPMarca extends javax.swing.JPanel {
         jLabel2.setText("Id Marca:");
 
         jLabel3.setText("Nombre de la Marca:");
+
+        jcbIdMarcaMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdMarcaModActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
 
@@ -178,6 +204,10 @@ public class JPMarca extends javax.swing.JPanel {
             .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbIdMarcaModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdMarcaModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbIdMarcaModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
