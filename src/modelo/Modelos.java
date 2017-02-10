@@ -5,11 +5,22 @@
  */
 package modelo;
 
+import core.BDCore;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author juanxxiii
  */
 public class Modelos {
+
+    //Metodos para interactuar con la BD.
+    private static BDCore bd = new BDCore();
+    private static String sql = null;
+    private static ResultSet rs = null;
+
     private int idModelo;
     private int idMarca;
     private String nombre;
@@ -42,7 +53,7 @@ public class Modelos {
         return idEficiencia;
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc="Setter">
     public void setIdModelo(int idModelo) {
         this.idModelo = idModelo;
@@ -75,15 +86,16 @@ public class Modelos {
      */
     public Modelos() {
     }
-    
+
     /**
      * Constructor con id para la modificacion de modelos.
+     *
      * @param idModelo
      * @param idMarca
      * @param nombre
      * @param consumo
      * @param emisiones
-     * @param idEficiencia 
+     * @param idEficiencia
      */
     public Modelos(int idModelo, int idMarca, String nombre, int consumo, float emisiones, int idEficiencia) {
         this.idModelo = idModelo;
@@ -93,13 +105,15 @@ public class Modelos {
         this.emisiones = emisiones;
         this.idEficiencia = idEficiencia;
     }
+
     /**
      * Constructor sin id para la creacion de modelo.
+     *
      * @param idMarca
      * @param nombre
      * @param consumo
      * @param emisiones
-     * @param idEficiencia 
+     * @param idEficiencia
      */
     public Modelos(int idMarca, String nombre, int consumo, float emisiones, int idEficiencia) {
         this.idMarca = idMarca;
@@ -108,10 +122,71 @@ public class Modelos {
         this.emisiones = emisiones;
         this.idEficiencia = idEficiencia;
     }
-    
-    
+
 // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
+    /**
+     *
+     * @throws SQLException
+     */
+    public void crearModelo() throws SQLException {
+        bd.actualizarTabla("insert into modelo values(null, " + idModelo + "," + idMarca + ",'" + nombre + ",'" + consumo + "'," + emisiones + "," + idEficiencia + ")");
+    }
+
+    /**
+     *
+     * @param _idModelo
+     * @return
+     * @throws SQLException
+     */
+    public Modelos mostrarModeloId(int _idModelo) throws SQLException {
+        ResultSet res;
+        Modelos miModelo = new Modelos();
+        res = bd.consultarTabla("select * from modelo  where id_mod = " + _idModelo);
+        while (res.next()) {
+            miModelo.setIdMarca(res.getInt("id_mar"));
+            miModelo.setIdEficiencia(res.getInt("id_efi"));
+            miModelo.setNombre(res.getString("nombre_mod"));
+            miModelo.setConsumo(res.getInt("consumo_mod"));
+            miModelo.setEmisiones(res.getFloat("emisiones_mod"));
+
+        }
+        return miModelo;
+    }
+
+    /**
+     * 
+     * @param listaModelos
+     * @return
+     * @throws SQLException 
+     */
+    public static ArrayList<Modelos> mostrarModelos(ArrayList listaModelos) throws SQLException {
+        ResultSet res;
+        Modelos miModelo = new Modelos();
+        res = bd.consultarTabla("select * from marca");
+        listaModelos.clear();
+        while (res.next()) {
+            miModelo.setIdMarca(res.getInt("id_mar"));
+            miModelo.setIdEficiencia(res.getInt("id_efi"));
+            miModelo.setNombre(res.getString("nombre_mod"));
+            miModelo.setConsumo(res.getInt("consumo_mod"));
+            miModelo.setEmisiones(res.getFloat("emisiones_mod"));
+
+            listaModelos.add(miModelo);
+        }
+
+        return listaModelos;
+    }
+
     
-    
-    
+    public void modificarModelo() throws SQLException {
+        bd.actualizarTabla("Update modelo set id_mod = '" + nombre + "' where id_mar = " + idMarca);
+    }
+
+   
+    public void borrarMarcaID(int _idMarca) throws SQLException {
+        bd.actualizarTabla("Delete from marca where idCine = " + _idMarca);
+    }
+
+// </editor-fold>
 }
