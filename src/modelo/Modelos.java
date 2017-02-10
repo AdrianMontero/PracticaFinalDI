@@ -155,10 +155,10 @@ public class Modelos {
     }
 
     /**
-     * 
+     *
      * @param listaModelos
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     public static ArrayList<Modelos> mostrarModelos(ArrayList listaModelos) throws SQLException {
         ResultSet res;
@@ -178,14 +178,21 @@ public class Modelos {
         return listaModelos;
     }
 
-    
+    /**
+     *
+     * @throws SQLException
+     */
     public void modificarModelo() throws SQLException {
-        bd.actualizarTabla("Update modelo set id_mod = '" + nombre + "' where id_mar = " + idMarca);
+        bd.actualizarTabla("Update modelo set id_mar = " + idMarca + ", id_efi = " + idEficiencia + ",nombre_mod = " + nombre + ",consumo_mod = " + consumo + ",emisiones_mod = " + emisiones + "  where id_mar = " + idMarca);
     }
 
-   
-    public void borrarMarcaID(int _idMarca) throws SQLException {
-        bd.actualizarTabla("Delete from marca where idCine = " + _idMarca);
+    /**
+     *
+     * @param _idModelo
+     * @throws SQLException
+     */
+    public void borrarModeloID(int _idModelo) throws SQLException {
+        bd.actualizarTabla("Delete from marca where idCine = " + _idModelo);
     }
 
 // </editor-fold>
