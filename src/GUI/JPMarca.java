@@ -34,6 +34,7 @@ public class JPMarca extends javax.swing.JPanel {
                 stringId = String.valueOf(miMarca.getIdMarca());
                 System.out.println(stringId);
                 jcbIdMarcaMod.addItem(stringId);
+                jcbIdMarcaBorrar.addItem(stringId);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,6 +71,11 @@ public class JPMarca extends javax.swing.JPanel {
         jLabel1.setText("Nombre de la Marca:");
 
         jbCrearMarca.setText("Crear Marca");
+        jbCrearMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCrearMarcaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,7 +91,7 @@ public class JPMarca extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addComponent(jbCrearMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +140,7 @@ public class JPMarca extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jtfNombreMarcaMod, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +163,18 @@ public class JPMarca extends javax.swing.JPanel {
 
         jLabel5.setText("Nombre de la Marca:");
 
-        jcbIdMarcaBorrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbIdMarcaBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdMarcaBorrarActionPerformed(evt);
+            }
+        });
 
         jbBorrar.setText("Borrar por Nombre");
+        jbBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -200,9 +215,7 @@ public class JPMarca extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,6 +236,36 @@ public class JPMarca extends javax.swing.JPanel {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbCrearMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearMarcaActionPerformed
+        String nombre = jtfNombreMarcaCrear.getText();
+
+        Marcas laMarca = new Marcas(nombre);
+        try {
+            laMarca.crearMarca();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbCrearMarcaActionPerformed
+
+    private void jcbIdMarcaBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdMarcaBorrarActionPerformed
+        int marcaBuscado;
+        marcaBuscado = jcbIdMarcaBorrar.getSelectedIndex();
+        miMarca = misMarcas.get(marcaBuscado);
+        jtfNombreMarcaBorrar.setText(miMarca.getNombre());
+    }//GEN-LAST:event_jcbIdMarcaBorrarActionPerformed
+
+    private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
+        int idMarca;
+        String comodin;
+        comodin = jcbIdMarcaBorrar.getSelectedItem().toString();
+        idMarca = Integer.parseInt(comodin);
+        try {
+            miMarca.borrarMarcaID(idMarca);
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbBorrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

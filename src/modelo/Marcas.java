@@ -79,7 +79,7 @@ public class Marcas {
      * @throws SQLException
      */
     public void crearMarca() throws SQLException {
-        bd.actualizarTabla("insert into marca values(null, '" + nombre + ")");
+        bd.actualizarTabla("insert into marca values(null, '" + nombre + "')");
     }
 
     /**
@@ -136,7 +136,7 @@ public class Marcas {
      * @throws SQLException 
      */
     public void borrarMarcaID(int _idMarca) throws SQLException {
-        bd.actualizarTabla("Delete from marca where idCine = " + _idMarca);
+        bd.actualizarTabla("Delete from marca where id_mar = " + _idMarca);
     }
 
 // </editor-fold>
