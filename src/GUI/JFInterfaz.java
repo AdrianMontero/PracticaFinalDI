@@ -5,8 +5,6 @@ package GUI;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author Daniel
@@ -15,14 +13,17 @@ public class JFInterfaz extends javax.swing.JFrame {
 
     JPMarca jpma = new JPMarca();
     JPModelo jpmo = new JPModelo();
+
     /**
      * Creates new form JFInterfaz
      */
     public JFInterfaz() {
+
         initComponents();
-        this.getContentPane().add(jpma);//Marca
-//        this.getContentPane().add(jpmo);//Modelo
+        // this.getContentPane().add(jpma);//Marca
+        this.getContentPane().add(jpmo);//Modelo
         this.setVisible(true);
+
     }
 
     /**

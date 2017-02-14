@@ -9,6 +9,7 @@ import core.BDCore;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -166,6 +167,8 @@ public class Modelos {
         res = bd.consultarTabla("select * from modelo");
         listaModelos.clear();
         while (res.next()) {
+            miModelo = new Modelos();
+            miModelo.setIdModelo(res.getInt("id_mod"));           
             miModelo.setIdMarca(res.getInt("id_mar"));
             miModelo.setIdEficiencia(res.getInt("id_efi"));
             miModelo.setNombre(res.getString("nombre_mod"));

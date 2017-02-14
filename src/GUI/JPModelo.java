@@ -26,39 +26,37 @@ import modelo.Modelos;
  * @author juanxxiii
  */
 public class JPModelo extends javax.swing.JPanel {
-private void PropiedadesTabla(){
+
+    private void PropiedadesTabla() {
         jtConsultar.setDefaultRenderer(Object.class, new ImgTabla());
         String titulos[] = {"Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Imagen"};
         DefaultTableModel tm = new DefaultTableModel(null, titulos);
-        tm.addRow(new Object[] {"campo1 ", "campo2", 3, 4, new JLabel(new ImageIcon(getClass().getResource("/img/ca.png")))});
+        tm.addRow(new Object[]{"campo1 ", "campo2", 3, 4, new JLabel(new ImageIcon(getClass().getResource("/img/ca.png")))});
         jtConsultar.setModel(tm);
     }
-    
+
     /**
      * Clase usada para guardar imagenes en jTable
      */
-    public class ImgTabla extends DefaultTableCellRenderer{
+    public class ImgTabla extends DefaultTableCellRenderer {
 
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            if(value instanceof JLabel){
-                JLabel lbl = (JLabel)value;
+            if (value instanceof JLabel) {
+                JLabel lbl = (JLabel) value;
                 return lbl;
             }
             return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
         }
     }
-    
-    
-  
-    
+
     ArrayList<Modelos> misModelos = new ArrayList();
     Modelos miModelo;
-    
+
     ArrayList<Marcas> misMarcas = new ArrayList();
     Marcas miMarca;
-    
+
     ArrayList<Eficiencia> misEficiencias = new ArrayList();
     Eficiencia miEficiencia;
 
@@ -66,56 +64,63 @@ private void PropiedadesTabla(){
      * Creates new form JPModelo
      */
     public JPModelo() {
+
         initComponents();
         PropiedadesTabla();
         String stringIdModelo;
+        String stringNombreModelo;
         String stringIdMarca;
-
+        String stringIdEficiencia;
+        /**
+         * Carga los ComboBox de marcas al crear un modelo.
+         */
         try {
-           Marcas.mostrarMarcas(misMarcas);
-           for (int i = 0; i < misMarcas.size(); i++) {
-               miMarca = (Marcas) misMarcas.get(i);
+            Marcas.mostrarMarcas(misMarcas);
+            for (int i = 0; i < misMarcas.size(); i++) {
+                miMarca = (Marcas) misMarcas.get(i);
                 stringIdMarca = String.valueOf(miMarca.getIdMarca());
                 System.out.println(stringIdMarca);
 
                 jcbIdMarcaCrear.addItem(stringIdMarca);
-           }} catch (SQLException ex) {
-            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-            
-           
-//           try {
-//           Eficiencia.mostrarMarcas(misEficiencias);
-//           for (int i = 0; i < misEficiencias.size(); i++) {
-//               miMarca = (Marcas) misMarcas.get(i);
-//                stringIdMarca = String.valueOf(miMarca.getIdMarca());
-//                System.out.println(stringIdMarca);
-//
-//                jcbIdMarcaCrear.addItem(stringIdMarca);
-//           } }catch (SQLException ex) {
-//            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-            try{
-            Modelos.mostrarModelos(misModelos);
-            for (int i = 0; i < misModelos.size(); i++) {
-
-                miModelo = (Modelos) misModelos.get(i);
-                stringIdModelo = String.valueOf(miModelo.getIdMarca());
-                System.out.println(stringIdModelo);
-
-                jcbIdModeloMod.addItem(stringIdModelo);
-                jcbIdModeloCon.addItem(stringIdModelo);
-                jcbIdModeloBorrar.addItem(stringIdModelo);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-        
+        /**
+         * Carga el ComboBox de idEficiencia al crear un nuevo modelo.
+         */
+        try {
+            Eficiencia.mostrarEficiencias(misEficiencias);
+            for (int i = 0; i < misEficiencias.size(); i++) {
+                miEficiencia = (Eficiencia) misEficiencias.get(i);
+                stringIdEficiencia = String.valueOf(miEficiencia.getIdEficiencia());
+
+                jcbIdEficienciaCrear.addItem(stringIdEficiencia);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /**
+         * Carga el ComboBox de modelos para cada uno de las vistas.
+         */
+        try {
+            Modelos.mostrarModelos(misModelos);
+            for (int i = 0; i < misModelos.size(); i++) {
+
+                miModelo = (Modelos) misModelos.get(i);
+                stringIdModelo = String.valueOf(miModelo.getIdModelo());
+                stringNombreModelo = String.valueOf(miModelo.getNombre());
+
+                jcbIdModeloMod.addItem(stringIdModelo);
+                jcbIdModeloCon.addItem(stringIdModelo);
+                jcbIdModeloBorrar.addItem(stringIdModelo);
+
+                jtfNombreModeloCon.setText(stringNombreModelo);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -140,6 +145,7 @@ private void PropiedadesTabla(){
         jbCrearModelo = new javax.swing.JButton();
         jsConsumoCrear = new javax.swing.JSlider();
         jtfEmisionesCrear = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jcbIdEficienciaMod = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -186,6 +192,8 @@ private void PropiedadesTabla(){
             }
         });
 
+        jLabel16.setText("Consumo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,7 +211,10 @@ private void PropiedadesTabla(){
                     .addComponent(jbCrearModelo)
                     .addComponent(jcbIdMarcaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNombreModeloCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jtfEmisionesCrear, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jcbIdEficienciaCrear, javax.swing.GroupLayout.Alignment.LEADING, 0, 65, Short.MAX_VALUE))))
@@ -222,7 +233,8 @@ private void PropiedadesTabla(){
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jsConsumoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -321,7 +333,11 @@ private void PropiedadesTabla(){
 
         jLabel15.setText("Nombre Modelo:");
 
-        jcbIdModeloCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbIdModeloCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdModeloConActionPerformed(evt);
+            }
+        });
 
         jbConsultar.setText("Consultar");
         jbConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -448,26 +464,36 @@ private void PropiedadesTabla(){
     private void jbCrearModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearModeloActionPerformed
         // TODO add your handling code here:
 
-        
         miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaCrear.getSelectedItem()));
         miModelo.setNombre(jtfNombreModeloCrear.getText());
         miModelo.setConsumo(jsConsumoCrear.getValue());
         miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
-        miModelo.setIdEficiencia(Integer.parseInt((String)jcbIdEficienciaCrear.getSelectedItem()));
-        
-        
+        miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaCrear.getSelectedItem()));
+
         try {
             miModelo.crearModelo();
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jbCrearModeloActionPerformed
 
     private void jbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbConsultarActionPerformed
+
+    private void jcbIdModeloConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloConActionPerformed
+        // TODO add your handling code here:
+
+        int modeloBuscado;
+        modeloBuscado = jcbIdModeloCon.getSelectedIndex();
+        miModelo = misModelos.get(modeloBuscado);
+
+        jtfNombreModeloCon.setText(miModelo.getNombre());
+
+
+    }//GEN-LAST:event_jcbIdModeloConActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -478,6 +504,7 @@ private void PropiedadesTabla(){
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
