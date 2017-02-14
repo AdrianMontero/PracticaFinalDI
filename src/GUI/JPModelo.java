@@ -5,17 +5,117 @@
  */
 package GUI;
 
+import java.awt.Component;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import modelo.Eficiencia;
+import modelo.Marcas;
+import modelo.Modelos;
+
 /**
  *
  * @author juanxxiii
  */
 public class JPModelo extends javax.swing.JPanel {
+private void PropiedadesTabla(){
+        jtConsultar.setDefaultRenderer(Object.class, new ImgTabla());
+        String titulos[] = {"Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Imagen"};
+        DefaultTableModel tm = new DefaultTableModel(null, titulos);
+        tm.addRow(new Object[] {"campo1 ", "campo2", 3, 4, new JLabel(new ImageIcon(getClass().getResource("/img/ca.png")))});
+        jtConsultar.setModel(tm);
+    }
+    
+    /**
+     * Clase usada para guardar imagenes en jTable
+     */
+    public class ImgTabla extends DefaultTableCellRenderer{
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            if(value instanceof JLabel){
+                JLabel lbl = (JLabel)value;
+                return lbl;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+    
+    
+  
+    
+    ArrayList<Modelos> misModelos = new ArrayList();
+    Modelos miModelo;
+    
+    ArrayList<Marcas> misMarcas = new ArrayList();
+    Marcas miMarca;
+    
+    ArrayList<Eficiencia> misEficiencias = new ArrayList();
+    Eficiencia miEficiencia;
 
     /**
      * Creates new form JPModelo
      */
     public JPModelo() {
         initComponents();
+        PropiedadesTabla();
+        String stringIdModelo;
+        String stringIdMarca;
+
+        try {
+           Marcas.mostrarMarcas(misMarcas);
+           for (int i = 0; i < misMarcas.size(); i++) {
+               miMarca = (Marcas) misMarcas.get(i);
+                stringIdMarca = String.valueOf(miMarca.getIdMarca());
+                System.out.println(stringIdMarca);
+
+                jcbIdMarcaCrear.addItem(stringIdMarca);
+           }} catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+           
+//           try {
+//           Eficiencia.mostrarMarcas(misEficiencias);
+//           for (int i = 0; i < misEficiencias.size(); i++) {
+//               miMarca = (Marcas) misMarcas.get(i);
+//                stringIdMarca = String.valueOf(miMarca.getIdMarca());
+//                System.out.println(stringIdMarca);
+//
+//                jcbIdMarcaCrear.addItem(stringIdMarca);
+//           } }catch (SQLException ex) {
+//            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+            try{
+            Modelos.mostrarModelos(misModelos);
+            for (int i = 0; i < misModelos.size(); i++) {
+
+                miModelo = (Modelos) misModelos.get(i);
+                stringIdModelo = String.valueOf(miModelo.getIdMarca());
+                System.out.println(stringIdModelo);
+
+                jcbIdModeloMod.addItem(stringIdModelo);
+                jcbIdModeloCon.addItem(stringIdModelo);
+                jcbIdModeloBorrar.addItem(stringIdModelo);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
     }
 
     /**
@@ -80,6 +180,11 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel5.setText("Id Eficiencia:");
 
         jbCrearModelo.setText("Crear Modelo");
+        jbCrearModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCrearModeloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -219,6 +324,11 @@ public class JPModelo extends javax.swing.JPanel {
         jcbIdModeloCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jbConsultar.setText("Consultar");
+        jbConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarActionPerformed(evt);
+            }
+        });
 
         jtConsultar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -334,6 +444,30 @@ public class JPModelo extends javax.swing.JPanel {
             .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbCrearModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearModeloActionPerformed
+        // TODO add your handling code here:
+
+        
+        miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaCrear.getSelectedItem()));
+        miModelo.setNombre(jtfNombreModeloCrear.getText());
+        miModelo.setConsumo(jsConsumoCrear.getValue());
+        miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
+        miModelo.setIdEficiencia(Integer.parseInt((String)jcbIdEficienciaCrear.getSelectedItem()));
+        
+        
+        try {
+            miModelo.crearModelo();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jbCrearModeloActionPerformed
+
+    private void jbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbConsultarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

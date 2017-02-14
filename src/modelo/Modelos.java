@@ -163,7 +163,7 @@ public class Modelos {
     public static ArrayList<Modelos> mostrarModelos(ArrayList listaModelos) throws SQLException {
         ResultSet res;
         Modelos miModelo = new Modelos();
-        res = bd.consultarTabla("select * from marca");
+        res = bd.consultarTabla("select * from modelo");
         listaModelos.clear();
         while (res.next()) {
             miModelo.setIdMarca(res.getInt("id_mar"));
@@ -192,7 +192,7 @@ public class Modelos {
      * @throws SQLException
      */
     public void borrarModeloID(int _idModelo) throws SQLException {
-        bd.actualizarTabla("Delete from marca where idCine = " + _idModelo);
+        bd.actualizarTabla("Delete from marca where id_mod = " + _idModelo);
     }
 
 // </editor-fold>
