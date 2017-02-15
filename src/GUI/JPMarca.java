@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import modelo.Marcas;
 
 /*
@@ -67,6 +68,12 @@ public class JPMarca extends javax.swing.JPanel {
         jcbIdMarcaBorrar = new javax.swing.JComboBox<>();
         jtfNombreMarcaBorrar = new javax.swing.JTextField();
         jbBorrar = new javax.swing.JButton();
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Nombre de la Marca:");
 
@@ -215,7 +222,7 @@ public class JPMarca extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,6 +273,24 @@ public class JPMarca extends javax.swing.JPanel {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        String stringId = null;
+        jcbIdMarcaMod.setModel(new DefaultComboBoxModel());
+        jcbIdMarcaBorrar.setModel(new DefaultComboBoxModel());
+        try {
+            Marcas.mostrarMarcas(misMarcas);
+            for (int i = 0; i < misMarcas.size(); i++) {
+                miMarca = (Marcas) misMarcas.get(i);
+                stringId = String.valueOf(miMarca.getIdMarca());
+                System.out.println(stringId);
+                jcbIdMarcaMod.addItem(stringId);
+                jcbIdMarcaBorrar.addItem(stringId);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
