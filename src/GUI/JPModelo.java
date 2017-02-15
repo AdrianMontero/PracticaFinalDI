@@ -27,11 +27,44 @@ import modelo.Modelos;
  */
 public class JPModelo extends javax.swing.JPanel {
 
-    private void PropiedadesTabla() {
+    private void PropiedadesTabla(int idModelo) throws SQLException {
+        //Cargamos los modelos en "misModelos"
+        misModelos.clear();
+        miModelo = new Modelos();
+
+        Modelos.mostrarModelos(misModelos);
+        for (int i = 0; i < misModelos.size(); i++) {
+            if (misModelos.get(i).getIdModelo() == idModelo) {
+                miModelo = misModelos.get(i);
+            }
+        }
+
+        //Cargamos las eficiencias en "misEficiencias"
+        misEficiencias.clear();
+        miEficiencia = new Eficiencia();
+
+        Eficiencia.mostrarEficiencias(misEficiencias);
+        for (int i = 0; i < misEficiencias.size(); i++) {
+            if (misEficiencias.get(i).getIdEficiencia() == miModelo.getIdEficiencia()) {
+                miEficiencia = misEficiencias.get(i);
+            }
+        }
+
+        //Cargamos las marcas en "misMarcas"
+        misMarcas.clear();
+        miMarca = new Marcas();
+
+        Marcas.mostrarMarcas(misMarcas);
+        for (int i = 0; i < misMarcas.size(); i++) {
+            if (misMarcas.get(i).getIdMarca() == miModelo.getIdMarca()) {
+                miMarca = misMarcas.get(i);
+            }
+        }
+
         jtConsultar.setDefaultRenderer(Object.class, new ImgTabla());
         String titulos[] = {"Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Imagen"};
         DefaultTableModel tm = new DefaultTableModel(null, titulos);
-        tm.addRow(new Object[]{"campo1 ", "campo2", 3, 4, new JLabel(new ImageIcon(getClass().getResource("/img/ca.png")))});
+        tm.addRow(new Object[]{miMarca.getNombre(), miModelo.getNombre(), miModelo.getConsumo(), miModelo.getEmisiones(), new JLabel(new ImageIcon(getClass().getResource(miEficiencia.getImageName().toString())))});
         jtConsultar.setModel(tm);
     }
 
@@ -66,7 +99,6 @@ public class JPModelo extends javax.swing.JPanel {
     public JPModelo() {
 
         initComponents();
-        PropiedadesTabla();
         String stringIdModelo;
         String stringNombreModelo;
         String stringIdMarca;
@@ -82,6 +114,7 @@ public class JPModelo extends javax.swing.JPanel {
                 System.out.println(stringIdMarca);
 
                 jcbIdMarcaCrear.addItem(stringIdMarca);
+                jcbIdMarcaMod.addItem(stringIdMarca);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,8 +127,9 @@ public class JPModelo extends javax.swing.JPanel {
             for (int i = 0; i < misEficiencias.size(); i++) {
                 miEficiencia = (Eficiencia) misEficiencias.get(i);
                 stringIdEficiencia = String.valueOf(miEficiencia.getIdEficiencia());
-
+                
                 jcbIdEficienciaCrear.addItem(stringIdEficiencia);
+                jcbIdEficienciaMod.addItem(stringIdEficiencia);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,6 +218,12 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel4.setText("Emisiones( gCO2/km):");
 
         jLabel5.setText("Id Eficiencia:");
+
+        jcbIdMarcaCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdMarcaCrearActionPerformed(evt);
+            }
+        });
 
         jbCrearModelo.setText("Crear Modelo");
         jbCrearModelo.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +315,11 @@ public class JPModelo extends javax.swing.JPanel {
         });
 
         jbModificarModelo.setText("Modificar Modelo");
+        jbModificarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarModeloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -502,7 +547,12 @@ public class JPModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCrearModeloActionPerformed
 
     private void jbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarActionPerformed
-        // TODO add your handling code here:
+        try {
+            PropiedadesTabla(Integer.parseInt(jcbIdModeloCon.getSelectedItem().toString()));
+        } catch (SQLException ex) {
+            System.out.println("buscar el modelo");
+            Logger.getLogger(JPModelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jbConsultarActionPerformed
 
     private void jcbIdModeloConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloConActionPerformed
@@ -547,8 +597,32 @@ public class JPModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_jsConsumoCrearMouseClicked
 
     private void jcbIdModeloModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloModActionPerformed
-        // TODO add your handling code here:
+        int modeloBuscado;
+        modeloBuscado = jcbIdModeloMod.getSelectedIndex();
+        miModelo = misModelos.get(modeloBuscado);
+        jtfNombreModeloMod.setText(miModelo.getNombre());
+        jtfConsumoMod.setText(String.valueOf(miModelo.getConsumo()));
+        jtfEmisionesMod.setText(String.valueOf(miModelo.getEmisiones()));
+        jcbIdMarcaMod.setSelectedItem(String.valueOf(miModelo.getIdMarca()));
+        jcbIdEficienciaMod.setSelectedItem(String.valueOf(miModelo.getIdEficiencia()));
     }//GEN-LAST:event_jcbIdModeloModActionPerformed
+
+    private void jcbIdMarcaCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdMarcaCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbIdMarcaCrearActionPerformed
+
+    private void jbModificarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarModeloActionPerformed
+        miModelo.setNombre(jtfNombreModeloMod.getText());
+        miModelo.setConsumo(Integer.parseInt(jtfConsumoMod.getText()));
+        miModelo.setEmisiones(Float.parseFloat(jtfEmisionesMod.getText()));
+        miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaMod.getSelectedItem()));
+        miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaMod.getSelectedItem()));
+        try {
+            miModelo.modificarModelo();
+        } catch (SQLException ex) {
+            Logger.getLogger(JPModelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbModificarModeloActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
