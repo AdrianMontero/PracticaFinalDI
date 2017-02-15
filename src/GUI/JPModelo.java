@@ -410,9 +410,18 @@ public class JPModelo extends javax.swing.JPanel {
 
         jLabel13.setText("Nombre Modelo:");
 
-        jcbIdModeloBorrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbIdModeloBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdModeloBorrarActionPerformed(evt);
+            }
+        });
 
         jbBorrrar.setText("Borrar por Nombre");
+        jbBorrrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBorrrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -494,6 +503,32 @@ public class JPModelo extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jcbIdModeloConActionPerformed
+
+    private void jcbIdModeloBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloBorrarActionPerformed
+        // TODO add your handling code here:
+        
+        int modeloBuscado;
+        modeloBuscado = jcbIdModeloBorrar.getSelectedIndex();
+        miModelo = misModelos.get(modeloBuscado);
+
+        jtfNombreModeloBorrar.setText(miModelo.getNombre());
+    }//GEN-LAST:event_jcbIdModeloBorrarActionPerformed
+
+    private void jbBorrrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrrarActionPerformed
+        // TODO add your handling code here:
+        int idModelo;
+        String comodin;
+        
+        idModelo = Integer.parseInt(jcbIdModeloBorrar.getSelectedItem().toString());
+        try {
+            miModelo.borrarModeloID(idModelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jbBorrrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -195,7 +195,7 @@ public class Modelos {
      * @throws SQLException
      */
     public void borrarModeloID(int _idModelo) throws SQLException {
-        bd.actualizarTabla("Delete from marca where id_mod = " + _idModelo);
+        bd.actualizarTabla("Delete from modelo where id_mod = " + _idModelo);
     }
 
 // </editor-fold>
