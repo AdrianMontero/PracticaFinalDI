@@ -163,7 +163,7 @@ public class Modelos {
      */
     public static ArrayList<Modelos> mostrarModelos(ArrayList listaModelos) throws SQLException {
         ResultSet res;
-        Modelos miModelo = new Modelos();
+        Modelos miModelo;
         res = bd.consultarTabla("select * from modelo");
         listaModelos.clear();
         while (res.next()) {
@@ -186,7 +186,7 @@ public class Modelos {
      * @throws SQLException
      */
     public void modificarModelo() throws SQLException {
-        bd.actualizarTabla("Update modelo set id_mar = " + idMarca + ", id_efi = " + idEficiencia + ",nombre_mod = " + nombre + ",consumo_mod = " + consumo + ",emisiones_mod = " + emisiones + "  where id_mar = " + idMarca);
+        bd.actualizarTabla("Update modelo set id_mar = " + idMarca + ", id_efi = " + idEficiencia + ",nombre_mod = '" + nombre + "',consumo_mod = " + consumo + ",emisiones_mod = " + emisiones + "  where id_mod = " + idModelo);
     }
 
     /**

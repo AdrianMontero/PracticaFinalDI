@@ -87,7 +87,7 @@ public class Eficiencia {
 
     public static ArrayList<Eficiencia> mostrarEficiencias(ArrayList listaEficiencias) throws SQLException {
         ResultSet res;
-        Eficiencia miEficiencia = new Eficiencia();
+        Eficiencia miEficiencia;
         res = bd.consultarTabla("select * from eficiencia");
         listaEficiencias.clear();
         while (res.next()) {
