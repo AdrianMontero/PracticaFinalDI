@@ -192,6 +192,12 @@ public class JPModelo extends javax.swing.JPanel {
             }
         });
 
+        jsConsumoCrear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jsConsumoCrearMouseClicked(evt);
+            }
+        });
+
         jLabel16.setText("Consumo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -261,6 +267,12 @@ public class JPModelo extends javax.swing.JPanel {
         jLabel10.setText("Id Marca:");
 
         jLabel11.setText("Id Modelo:");
+
+        jcbIdModeloMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbIdModeloModActionPerformed(evt);
+            }
+        });
 
         jbModificarModelo.setText("Modificar Modelo");
 
@@ -476,6 +488,7 @@ public class JPModelo extends javax.swing.JPanel {
         miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaCrear.getSelectedItem()));
         miModelo.setNombre(jtfNombreModeloCrear.getText());
         miModelo.setConsumo(jsConsumoCrear.getValue());
+        System.out.println(jsConsumoCrear.getValue());
         miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
         miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaCrear.getSelectedItem()));
 
@@ -525,10 +538,17 @@ public class JPModelo extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+               
         
     }//GEN-LAST:event_jbBorrrarActionPerformed
+
+    private void jsConsumoCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsConsumoCrearMouseClicked
+        jLabel16.setText(String.valueOf(jsConsumoCrear.getValue()));
+    }//GEN-LAST:event_jsConsumoCrearMouseClicked
+
+    private void jcbIdModeloModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloModActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbIdModeloModActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

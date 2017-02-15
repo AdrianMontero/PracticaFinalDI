@@ -131,7 +131,7 @@ public class Modelos {
      * @throws SQLException
      */
     public void crearModelo() throws SQLException {
-        bd.actualizarTabla("insert into modelo values(null, " + idModelo + "," + idMarca + ",'" + nombre + ",'" + consumo + "'," + emisiones + "," + idEficiencia + ")");
+        bd.actualizarTabla("insert into modelo values(null," + idMarca + "," + idEficiencia + ",'" + nombre + "'," + consumo + "," + emisiones + ")");
     }
 
     /**
