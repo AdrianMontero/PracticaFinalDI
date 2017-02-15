@@ -62,8 +62,7 @@ public class JPModelo extends javax.swing.JPanel {
         }
 
         jtConsultar.setDefaultRenderer(Object.class, new ImgTabla());
-        String titulos[] = {"Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Imagen"};
-        DefaultTableModel tm = new DefaultTableModel(null, titulos);
+        DefaultTableModel tm = (DefaultTableModel) jtConsultar.getModel();
         tm.addRow(new Object[]{miMarca.getNombre(), miModelo.getNombre(), miModelo.getConsumo(), miModelo.getEmisiones(), new JLabel(new ImageIcon(getClass().getResource(miEficiencia.getImageName().toString())))});
         jtConsultar.setModel(tm);
     }
@@ -103,6 +102,8 @@ public class JPModelo extends javax.swing.JPanel {
         String stringNombreModelo;
         String stringIdMarca;
         String stringIdEficiencia;
+        String titulos[] = {"Nombre marca", "Nombre modelo", "Consumo", "Emisiones", "Imagen"};
+        DefaultTableModel tm = new DefaultTableModel(null, titulos);
         /**
          * Carga los ComboBox de marcas al crear un modelo.
          */
@@ -202,6 +203,7 @@ public class JPModelo extends javax.swing.JPanel {
         jbConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultar = new javax.swing.JTable();
+        jcbBorrarTabla = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -421,12 +423,19 @@ public class JPModelo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jtConsultar);
 
+        jcbBorrarTabla.setText("Borrar Tabla");
+        jcbBorrarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbBorrarTablaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -435,10 +444,15 @@ public class JPModelo extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jcbIdModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jbConsultar))
-                            .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(jbConsultar)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jcbBorrarTabla))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -451,7 +465,8 @@ public class JPModelo extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jcbIdModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbConsultar))
+                    .addComponent(jbConsultar)
+                    .addComponent(jcbBorrarTabla))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -624,6 +639,11 @@ public class JPModelo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbModificarModeloActionPerformed
 
+    private void jcbBorrarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBorrarTablaActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jtConsultar.getModel();   
+        model.setRowCount(0);
+    }//GEN-LAST:event_jcbBorrarTablaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -652,6 +672,7 @@ public class JPModelo extends javax.swing.JPanel {
     private javax.swing.JButton jbConsultar;
     private javax.swing.JButton jbCrearModelo;
     private javax.swing.JButton jbModificarModelo;
+    private javax.swing.JButton jcbBorrarTabla;
     private javax.swing.JComboBox<String> jcbIdEficienciaCrear;
     private javax.swing.JComboBox<String> jcbIdEficienciaMod;
     private javax.swing.JComboBox<String> jcbIdMarcaCrear;
