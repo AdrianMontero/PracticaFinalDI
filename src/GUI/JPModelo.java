@@ -6,6 +6,8 @@
 package GUI;
 
 import java.awt.Component;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +34,7 @@ public class JPModelo extends javax.swing.JPanel {
         //Cargamos los modelos en "misModelos"
         misModelos.clear();
         miModelo = new Modelos();
+        miMarca = new Marcas();
 
         Modelos.mostrarModelos(misModelos);
         for (int i = 0; i < misModelos.size(); i++) {
@@ -63,7 +67,9 @@ public class JPModelo extends javax.swing.JPanel {
 
         jtConsultar.setDefaultRenderer(Object.class, new ImgTabla());
         DefaultTableModel tm = (DefaultTableModel) jtConsultar.getModel();
+        tm.setRowCount(0);
         tm.addRow(new Object[]{miMarca.getNombre(), miModelo.getNombre(), miModelo.getConsumo(), miModelo.getEmisiones(), new JLabel(new ImageIcon(getClass().getResource(miEficiencia.getImageName().toString())))});
+
         jtConsultar.setModel(tm);
     }
 
@@ -128,7 +134,7 @@ public class JPModelo extends javax.swing.JPanel {
             for (int i = 0; i < misEficiencias.size(); i++) {
                 miEficiencia = (Eficiencia) misEficiencias.get(i);
                 stringIdEficiencia = String.valueOf(miEficiencia.getIdEficiencia());
-                
+
                 jcbIdEficienciaCrear.addItem(stringIdEficiencia);
                 jcbIdEficienciaMod.addItem(stringIdEficiencia);
             }
@@ -204,6 +210,7 @@ public class JPModelo extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultar = new javax.swing.JTable();
         jcbBorrarTabla = new javax.swing.JButton();
+        jbExportar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -430,32 +437,38 @@ public class JPModelo extends javax.swing.JPanel {
             }
         });
 
+        jbExportar.setText("Exportar a Excel");
+        jbExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jcbIdModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jbConsultar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jcbIdModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jbConsultar)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(26, 26, 26)
-                        .addComponent(jcbBorrarTabla))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jcbBorrarTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -470,10 +483,11 @@ public class JPModelo extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNombreModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbExportar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar Modelo", jPanel3);
@@ -544,21 +558,24 @@ public class JPModelo extends javax.swing.JPanel {
 
     private void jbCrearModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearModeloActionPerformed
         // TODO add your handling code here:
+        if (jtfNombreModeloCrear.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se puede crear con el campo nombre en blanco");
+        } else if(jtfEmisionesCrear.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "No se puede crear con el campo emision en blanco");
+        }else{
+            miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaCrear.getSelectedItem()));
+            miModelo.setNombre(jtfNombreModeloCrear.getText());
+            miModelo.setConsumo(jsConsumoCrear.getValue());
+            System.out.println(jsConsumoCrear.getValue());
+            miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
+            miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaCrear.getSelectedItem()));
 
-        miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaCrear.getSelectedItem()));
-        miModelo.setNombre(jtfNombreModeloCrear.getText());
-        miModelo.setConsumo(jsConsumoCrear.getValue());
-        System.out.println(jsConsumoCrear.getValue());
-        miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
-        miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaCrear.getSelectedItem()));
-
-        try {
-            miModelo.crearModelo();
-        } catch (SQLException ex) {
-            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                miModelo.crearModelo();
+            } catch (SQLException ex) {
+                Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-
     }//GEN-LAST:event_jbCrearModeloActionPerformed
 
     private void jbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarActionPerformed
@@ -584,7 +601,7 @@ public class JPModelo extends javax.swing.JPanel {
 
     private void jcbIdModeloBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdModeloBorrarActionPerformed
         // TODO add your handling code here:
-        
+
         int modeloBuscado;
         modeloBuscado = jcbIdModeloBorrar.getSelectedIndex();
         miModelo = misModelos.get(modeloBuscado);
@@ -596,15 +613,15 @@ public class JPModelo extends javax.swing.JPanel {
         // TODO add your handling code here:
         int idModelo;
         String comodin;
-        
+
         idModelo = Integer.parseInt(jcbIdModeloBorrar.getSelectedItem().toString());
         try {
             miModelo.borrarModeloID(idModelo);
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
-               
-        
+
+
     }//GEN-LAST:event_jbBorrrarActionPerformed
 
     private void jsConsumoCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jsConsumoCrearMouseClicked
@@ -640,9 +657,65 @@ public class JPModelo extends javax.swing.JPanel {
     }//GEN-LAST:event_jbModificarModeloActionPerformed
 
     private void jcbBorrarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBorrarTablaActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jtConsultar.getModel();   
+        DefaultTableModel model = (DefaultTableModel) jtConsultar.getModel();
         model.setRowCount(0);
     }//GEN-LAST:event_jcbBorrarTablaActionPerformed
+
+    private void jbExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExportarActionPerformed
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try {
+            fichero = new FileWriter("C:/modelo.xls");
+            pw = new PrintWriter(fichero);
+            pw.println("<html>");
+            pw.println("<body>");
+            pw.println("<table border=\"2px\">");
+            pw.println("<tr>");
+            pw.println("<td>");
+            pw.println("Nombre del modelo: ");
+            pw.println("</td>");
+            pw.println("<td>");
+            pw.println(miModelo.getNombre());
+            pw.println("</td>");
+            pw.println("</tr>");
+            pw.println("<tr>");
+            pw.println("<td>");
+            pw.println("Nombre del marca: ");
+            pw.println("</td>");
+            pw.println("<td>");
+            pw.println(miMarca.getNombre());
+            pw.println("</td>");
+            pw.println("</tr>");
+            pw.println("<tr>");
+            pw.println("<td>");
+            pw.println("Consumo: ");
+            pw.println("</td>");
+            pw.println("<td>");
+            pw.println(miModelo.getConsumo());
+            pw.println("</td>");
+            pw.println("</tr>");
+            pw.println("<tr>");
+            pw.println("<td>");
+            pw.println("Emisiones: ");
+            pw.println("</td>");
+            pw.println("<td>");
+            pw.println(miModelo.getEmisiones());
+            pw.println("</table>");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para 
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jbExportarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -671,6 +744,7 @@ public class JPModelo extends javax.swing.JPanel {
     private javax.swing.JButton jbBorrrar;
     private javax.swing.JButton jbConsultar;
     private javax.swing.JButton jbCrearModelo;
+    private javax.swing.JButton jbExportar;
     private javax.swing.JButton jbModificarModelo;
     private javax.swing.JButton jcbBorrarTabla;
     private javax.swing.JComboBox<String> jcbIdEficienciaCrear;

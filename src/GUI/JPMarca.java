@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modelo.Marcas;
 
 /*
@@ -12,30 +13,31 @@ import modelo.Marcas;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 /**
  *
  * @author Daniel
  */
 public class JPMarca extends javax.swing.JPanel {
+
     ArrayList<Marcas> misMarcas = new ArrayList();
     Marcas miMarca;
+
     /**
      * Creates new form JPInicio
      */
     public JPMarca() {
         initComponents();
         String stringId;
-
+        String nombreMarca=null;
         try {
             Marcas.mostrarMarcas(misMarcas);
             for (int i = 0; i < misMarcas.size(); i++) {
                 miMarca = (Marcas) misMarcas.get(i);
                 stringId = String.valueOf(miMarca.getIdMarca());
-                System.out.println(stringId);
+                nombreMarca = String.valueOf(miMarca.getNombre());
                 jcbIdMarcaMod.addItem(stringId);
                 jcbIdMarcaBorrar.addItem(stringId);
+                jcbNombreMarca.addItem(nombreMarca);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +64,8 @@ public class JPMarca extends javax.swing.JPanel {
         jcbIdMarcaMod = new javax.swing.JComboBox<>();
         jtfNombreMarcaMod = new javax.swing.JTextField();
         jbModificar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jcbNombreMarca = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -131,6 +135,14 @@ public class JPMarca extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setText("Nombre de la Marca:");
+
+        jcbNombreMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbNombreMarcaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -138,15 +150,18 @@ public class JPMarca extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfNombreMarcaMod, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jcbIdMarcaMod, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jcbNombreMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbIdMarcaMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 70, Short.MAX_VALUE))
                         .addGap(45, 45, 45)
-                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jtfNombreMarcaMod, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -160,8 +175,12 @@ public class JPMarca extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
+                    .addComponent(jcbNombreMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
                     .addComponent(jtfNombreMarcaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificación de Marca", jPanel2);
@@ -231,7 +250,10 @@ public class JPMarca extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jcbIdMarcaModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbIdMarcaModActionPerformed
-        // TODO add your handling code here:
+        int marcaBuscado;
+        marcaBuscado = jcbIdMarcaMod.getSelectedIndex();
+        miMarca = misMarcas.get(marcaBuscado);
+        jtfNombreMarcaMod.setText(miMarca.getNombre());
     }//GEN-LAST:event_jcbIdMarcaModActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
@@ -246,12 +268,15 @@ public class JPMarca extends javax.swing.JPanel {
 
     private void jbCrearMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearMarcaActionPerformed
         String nombre = jtfNombreMarcaCrear.getText();
-
         Marcas laMarca = new Marcas(nombre);
-        try {
-            laMarca.crearMarca();
-        } catch (SQLException ex) {
-            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+        if (jtfNombreMarcaCrear.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se puede crear con el campo nombre en blanco");
+        } else {
+            try {
+                laMarca.crearMarca();
+            } catch (SQLException ex) {
+                Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jbCrearMarcaActionPerformed
 
@@ -276,21 +301,31 @@ public class JPMarca extends javax.swing.JPanel {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         String stringId = null;
+        String nombreMarca=null;
         jcbIdMarcaMod.setModel(new DefaultComboBoxModel());
         jcbIdMarcaBorrar.setModel(new DefaultComboBoxModel());
+        jcbNombreMarca.setModel(new DefaultComboBoxModel());
         try {
             Marcas.mostrarMarcas(misMarcas);
             for (int i = 0; i < misMarcas.size(); i++) {
                 miMarca = (Marcas) misMarcas.get(i);
                 stringId = String.valueOf(miMarca.getIdMarca());
+                nombreMarca = String.valueOf(miMarca.getNombre());
                 System.out.println(stringId);
                 jcbIdMarcaMod.addItem(stringId);
                 jcbIdMarcaBorrar.addItem(stringId);
+                jcbNombreMarca.addItem(nombreMarca);
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jcbNombreMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNombreMarcaActionPerformed
+        String nomMarcaBuscado;
+        nomMarcaBuscado = (String) jcbNombreMarca.getSelectedItem();
+        jtfNombreMarcaMod.setText(nomMarcaBuscado);
+    }//GEN-LAST:event_jcbNombreMarcaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,6 +334,7 @@ public class JPMarca extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -308,6 +344,7 @@ public class JPMarca extends javax.swing.JPanel {
     private javax.swing.JButton jbModificar;
     private javax.swing.JComboBox<String> jcbIdMarcaBorrar;
     private javax.swing.JComboBox<String> jcbIdMarcaMod;
+    private javax.swing.JComboBox<String> jcbNombreMarca;
     private javax.swing.JTextField jtfNombreMarcaBorrar;
     private javax.swing.JTextField jtfNombreMarcaCrear;
     private javax.swing.JTextField jtfNombreMarcaMod;

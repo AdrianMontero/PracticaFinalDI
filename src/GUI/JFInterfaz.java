@@ -20,12 +20,12 @@ public class JFInterfaz extends javax.swing.JFrame {
     public JFInterfaz() {
 
         initComponents();
-        // this.getContentPane().add(jpma);//Marca
-        this.getContentPane().add(jpmo);//Modelo
+        this.getContentPane().add(jpma);//Marca
+//        this.getContentPane().add(jpmo);//Modelo
         this.setVisible(true);
 
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,10 +35,62 @@ public class JFInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMarcas = new javax.swing.JMenu();
+        jModelos = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMarcas.setText("Marcas");
+        jMarcas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMarcasMouseClicked(evt);
+            }
+        });
+        jMarcas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMarcasActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMarcas);
+
+        jModelos.setText("Modelos");
+        jModelos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jModelosMouseClicked(evt);
+            }
+        });
+        jModelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jModelosActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jModelos);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMarcasActionPerformed
+
+    }//GEN-LAST:event_jMarcasActionPerformed
+
+    private void jModelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModelosActionPerformed
+
+    }//GEN-LAST:event_jModelosActionPerformed
+
+    private void jMarcasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMarcasMouseClicked
+        this.getContentPane().add(jpma);//Marca
+        jpmo.setVisible(false);
+        jpma.setVisible(true);
+    }//GEN-LAST:event_jMarcasMouseClicked
+
+    private void jModelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jModelosMouseClicked
+        this.getContentPane().add(jpmo);//Modelo
+        jpma.setVisible(false);
+        jpmo.setVisible(true);
+    }//GEN-LAST:event_jModelosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -77,5 +129,8 @@ public class JFInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMarcas;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jModelos;
     // End of variables declaration//GEN-END:variables
 }
