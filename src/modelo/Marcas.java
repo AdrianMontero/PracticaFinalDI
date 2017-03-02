@@ -83,9 +83,9 @@ public class Marcas {
     }
 
     /**
-     * 
-     * @param _idMarca
-     * @return
+     *  Mostrar marca segun id.
+     * @param _idMarca id de la marca.
+     * @return devuelve el nombre de la marca
      * @throws SQLException 
      */
     public Marcas mostrarMarcaId(int _idMarca) throws SQLException {
@@ -99,9 +99,9 @@ public class Marcas {
     }
     
     /**
-     * 
-     * @param listaMarcas
-     * @return
+     * Muestra todas las marcas.
+     * @param listaMarcas ArrayList de marcas.
+     * @return ArrayList con los id y nombres de las marcas.
      * @throws SQLException 
      */
     public static ArrayList<Marcas> mostrarMarcas(ArrayList listaMarcas) throws SQLException {
@@ -120,19 +120,17 @@ public class Marcas {
         return listaMarcas;
     }
     
-    /**
-     * 
-     * @param nombre
-     * @param _idMarca
-     * @throws SQLException 
-     */
+   /**
+    * Modifica una marca
+    * @throws SQLException 
+    */
     public void modificarMarca() throws SQLException {
         bd.actualizarTabla("Update marca set nombre_mar = '"+ nombre + "' where id_mar = " + idMarca);
     }
 
     /**
-     * 
-     * @param _idMarca
+     * Borra una marca segun el id.
+     * @param _idMarca id de la marca que sera borrada.
      * @throws SQLException 
      */
     public void borrarMarcaID(int _idMarca) throws SQLException {

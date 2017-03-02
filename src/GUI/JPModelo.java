@@ -85,7 +85,7 @@ public class JPModelo extends javax.swing.JPanel {
                 JLabel lbl = (JLabel) value;
                 return lbl;
             }
-            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //To change body of generated methods, choose Tools | Templates.
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         }
     }
 
@@ -350,7 +350,7 @@ public class JPModelo extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jcbIdModeloMod, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcbIdMarcaMod, javax.swing.GroupLayout.Alignment.LEADING, 0, 68, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                         .addComponent(jbModificarModelo)
                         .addGap(74, 74, 74))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -449,10 +449,6 @@ public class JPModelo extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15)
@@ -463,13 +459,20 @@ public class JPModelo extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jcbIdModeloCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jbConsultar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jcbBorrarTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addComponent(jbConsultar)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbExportar)
+                        .addContainerGap(183, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jcbBorrarTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,7 +490,7 @@ public class JPModelo extends javax.swing.JPanel {
                     .addComponent(jbExportar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Consultar Modelo", jPanel3);
@@ -525,7 +528,7 @@ public class JPModelo extends javax.swing.JPanel {
                         .addComponent(jtfNombreModeloBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbBorrrar)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +551,9 @@ public class JPModelo extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,11 +574,14 @@ public class JPModelo extends javax.swing.JPanel {
             System.out.println(jsConsumoCrear.getValue());
             miModelo.setEmisiones(Integer.parseInt(jtfEmisionesCrear.getText()));
             miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaCrear.getSelectedItem()));
+            
+            JOptionPane.showMessageDialog(null, "Modelo creado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 
             try {
                 miModelo.crearModelo();
             } catch (SQLException ex) {
-                Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error durante la creacion del modelo", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbCrearModeloActionPerformed
@@ -612,13 +620,15 @@ public class JPModelo extends javax.swing.JPanel {
     private void jbBorrrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrrarActionPerformed
         // TODO add your handling code here:
         int idModelo;
-        String comodin;
+        //String comodin;
 
         idModelo = Integer.parseInt(jcbIdModeloBorrar.getSelectedItem().toString());
         try {
             miModelo.borrarModeloID(idModelo);
+            JOptionPane.showMessageDialog(null, "Modelo borrado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error durante el borrado del modelo", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -649,10 +659,13 @@ public class JPModelo extends javax.swing.JPanel {
         miModelo.setEmisiones(Float.parseFloat(jtfEmisionesMod.getText()));
         miModelo.setIdMarca(Integer.parseInt((String) jcbIdMarcaMod.getSelectedItem()));
         miModelo.setIdEficiencia(Integer.parseInt((String) jcbIdEficienciaMod.getSelectedItem()));
+        
+        JOptionPane.showMessageDialog(null, "Modelo modificado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         try {
             miModelo.modificarModelo();
         } catch (SQLException ex) {
-            Logger.getLogger(JPModelo.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JPModelo.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error durante durante la modificacion del modelo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbModificarModeloActionPerformed
 
@@ -702,12 +715,15 @@ public class JPModelo extends javax.swing.JPanel {
             pw.println(miModelo.getEmisiones());
             pw.println("</table>");
 
+            
+            JOptionPane.showMessageDialog(null, "Excel generado en 'C:/modelo.xls'", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al exportar a excel", "Error", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
-                // Nuevamente aprovechamos el finally para 
-                // asegurarnos que se cierra el fichero.
+                // Nos aseguramos que se cierra el fichero.
+                
                 if (null != fichero) {
                     fichero.close();
                 }

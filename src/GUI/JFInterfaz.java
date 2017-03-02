@@ -23,6 +23,7 @@ public class JFInterfaz extends javax.swing.JFrame {
         this.getContentPane().add(jpma);//Marca
 //        this.getContentPane().add(jpmo);//Modelo
         this.setVisible(true);
+        this.setBounds(0, 0, 700, 400);
 
     }
     

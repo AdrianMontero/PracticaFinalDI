@@ -126,8 +126,9 @@ public class Modelos {
 
 // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Metodos">
+    
     /**
-     *
+     * Crea un modelo
      * @throws SQLException
      */
     public void crearModelo() throws SQLException {
@@ -135,9 +136,9 @@ public class Modelos {
     }
 
     /**
-     *
-     * @param _idModelo
-     * @return
+     * Muestra un modelo segun su id.
+     * @param _idModelo id del modelo.
+     * @returnretorna los datos de un modelo.
      * @throws SQLException
      */
     public Modelos mostrarModeloId(int _idModelo) throws SQLException {
@@ -156,9 +157,9 @@ public class Modelos {
     }
 
     /**
-     *
-     * @param listaModelos
-     * @return
+     * Muestra una ArrayList de modelos.
+     * @param listaModelos ArrayList de modelos.
+     * @return ArrayList con los datos de modelos.
      * @throws SQLException
      */
     public static ArrayList<Modelos> mostrarModelos(ArrayList listaModelos) throws SQLException {
@@ -182,16 +183,16 @@ public class Modelos {
     }
 
     /**
-     *
-     * @throws SQLException
+     * Modifica un modelo.
+     * @throws SQLException 
      */
     public void modificarModelo() throws SQLException {
         bd.actualizarTabla("Update modelo set id_mar = " + idMarca + ", id_efi = " + idEficiencia + ",nombre_mod = '" + nombre + "',consumo_mod = " + consumo + ",emisiones_mod = " + emisiones + "  where id_mod = " + idModelo);
     }
 
     /**
-     *
-     * @param _idModelo
+     * Borra un modelo
+     * @param _idModelo id del modelo
      * @throws SQLException
      */
     public void borrarModeloID(int _idModelo) throws SQLException {

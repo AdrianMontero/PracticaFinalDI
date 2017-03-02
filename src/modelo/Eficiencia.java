@@ -52,7 +52,6 @@ public class Eficiencia {
         this.imageName = imageName;
     }
     // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="Constructores">
     /**
      * Constructor vacio.
@@ -85,6 +84,12 @@ public class Eficiencia {
     }
     // </editor-fold>
 
+    /**
+     * Muestra todas las eficiencias.
+     * @param listaEficiencias Array de eficiencias.
+     * @return Array cargado con la lista de eficiencias.
+     * @throws SQLException 
+     */
     public static ArrayList<Eficiencia> mostrarEficiencias(ArrayList listaEficiencias) throws SQLException {
         ResultSet res;
         Eficiencia miEficiencia;

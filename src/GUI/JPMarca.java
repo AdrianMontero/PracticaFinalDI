@@ -41,6 +41,7 @@ public class JPMarca extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: " +ex);
         }
     }
 
@@ -261,8 +262,10 @@ public class JPMarca extends javax.swing.JPanel {
         miMarca.setNombre(jtfNombreMarcaMod.getText());
         try {
             miMarca.modificarMarca();
+            JOptionPane.showMessageDialog(null, "Marca modificada","Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error", "Error durante la modificacion de la marca.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbModificarActionPerformed
 
@@ -274,8 +277,12 @@ public class JPMarca extends javax.swing.JPanel {
         } else {
             try {
                 laMarca.crearMarca();
+                
+                 JOptionPane.showMessageDialog(null, "Marca creada","Informacion ", JOptionPane.INFORMATION_MESSAGE);
+
             } catch (SQLException ex) {
-                Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+               JOptionPane.showMessageDialog(null, "Error durante la creacion de la marca", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbCrearMarcaActionPerformed
@@ -294,8 +301,10 @@ public class JPMarca extends javax.swing.JPanel {
         idMarca = Integer.parseInt(comodin);
         try {
             miMarca.borrarMarcaID(idMarca);
+            JOptionPane.showMessageDialog(null, "Marca borrada","Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error durante el borrado de la marca", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
@@ -318,6 +327,7 @@ public class JPMarca extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error: " +ex);
         }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
