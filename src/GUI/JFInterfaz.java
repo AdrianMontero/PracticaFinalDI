@@ -1,5 +1,10 @@
 package GUI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -123,6 +128,18 @@ public class JFInterfaz extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        try {
+            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+        } catch (InstantiationException ex) {
+            Logger.getLogger(JFInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(JFInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(JFInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
