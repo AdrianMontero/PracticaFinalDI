@@ -8,14 +8,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import modelo.Marcas;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
- * @author Daniel
+ * Formularios de creación, modificación, consulta y borrado de marcas.
+ * 
+ * @author GreenMonster
  */
 public class JPMarca extends javax.swing.JPanel {
 

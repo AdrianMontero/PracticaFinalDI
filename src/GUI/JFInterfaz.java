@@ -6,8 +6,10 @@ package GUI;
  * and open the template in the editor.
  */
 /**
- *
- * @author Daniel
+ * JFrame principal de la aplicación en que se mostraran tanto los formulario de 
+ * marcas como los de modelos.
+ * 
+ * @author GreenMonster
  */
 public class JFInterfaz extends javax.swing.JFrame {
 

@@ -25,8 +25,9 @@ import modelo.Marcas;
 import modelo.Modelos;
 
 /**
- *
- * @author juanxxiii
+ * Formularios de creación, modificación, consulta y borrado de modelos.
+ * 
+ * @author GreenMonster
  */
 public class JPModelo extends javax.swing.JPanel {
 
@@ -620,14 +621,12 @@ public class JPModelo extends javax.swing.JPanel {
     private void jbBorrrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrrarActionPerformed
         // TODO add your handling code here:
         int idModelo;
-        //String comodin;
 
         idModelo = Integer.parseInt(jcbIdModeloBorrar.getSelectedItem().toString());
         try {
             miModelo.borrarModeloID(idModelo);
             JOptionPane.showMessageDialog(null, "Modelo borrado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
-            //Logger.getLogger(JPMarca.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error durante el borrado del modelo", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -664,7 +663,6 @@ public class JPModelo extends javax.swing.JPanel {
         try {
             miModelo.modificarModelo();
         } catch (SQLException ex) {
-            //Logger.getLogger(JPModelo.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error durante durante la modificacion del modelo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbModificarModeloActionPerformed

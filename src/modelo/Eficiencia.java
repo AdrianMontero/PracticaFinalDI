@@ -11,8 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
- * @author juanxxiii
+ * Clase en con los metodos necesarios para la visualización de eficiencias. 
+ * 
+ * @author GreenMonster
  */
 public class Eficiencia {
 
@@ -39,6 +40,7 @@ public class Eficiencia {
     }
 
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Setter">
     public void setIdEficiencia(int idEficiencia) {
         this.idEficiencia = idEficiencia;
@@ -52,6 +54,7 @@ public class Eficiencia {
         this.imageName = imageName;
     }
     // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Constructores">
     /**
      * Constructor vacio.
@@ -84,6 +87,7 @@ public class Eficiencia {
     }
     // </editor-fold>
 
+    // <editor-fold defaultstate="collapsed" desc="Metodos">
     /**
      * Muestra todas las eficiencias.
      * @param listaEficiencias Array de eficiencias.
@@ -107,5 +111,7 @@ public class Eficiencia {
 
         return listaEficiencias;
     }
+    
+    // </editor-fold>
 
 }

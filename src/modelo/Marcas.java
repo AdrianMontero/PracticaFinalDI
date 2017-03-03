@@ -11,8 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
- * @author juanxxiii
+ * Clase en con los metodos necesarios para la creación, modificación, 
+ * visualización y borrado de marcas. 
+ * 
+ * @author GreenMonster
  */
 public class Marcas {
     

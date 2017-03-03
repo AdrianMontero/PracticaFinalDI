@@ -15,8 +15,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author adria
+ * Clase de conexión con la base de datos en la que se encuentran los metodos de 
+ * selección, modificación y borrado de datos.
+ * 
+ * @author GreenMonster
  */
 public class BDCore {
 
@@ -44,20 +46,6 @@ public class BDCore {
         }
     }
 
-//   Codigo de muestra para hacer updates o consultas a la BBDD
-//        String mensaje = jtfSend.getText();
-//        Statement stmt = null;
-//        String sql = null;
-//        ResultSet rs = null;
-//            stmt = conexion.createStatement();
-//            stmt.executeUpdate("insert into juansapp values('" + nombre + "','" + mensaje + "')");
-//            sql = "Select * from juansapp";
-//            rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                jtaMensajes.append("\n" + rs.getString("Nombre")+": ");
-//                jtaMensajes.append(rs.getString("Mensaje"));
-//            }
-//            stmt.close();
     /**
      * Cierra la conexion con la base de datos, ya sea MySql o Sqlite3
      *

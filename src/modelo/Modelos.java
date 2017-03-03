@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- *
- * @author juanxxiii
+ * Clase en con los metodos necesarios para la creación, modificación, 
+ * visualización y borrado de modelos. 
+ * 
+ * @author GreenMonster
  */
 public class Modelos {
 
@@ -125,6 +127,7 @@ public class Modelos {
     }
 
 // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Metodos">
     
     /**
