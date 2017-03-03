@@ -714,7 +714,7 @@ public class JPModelo extends javax.swing.JPanel {
             pw.println("</table>");
 
             
-            JOptionPane.showMessageDialog(null, "Excel generado en 'C:/modelo.xls'", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Excel generado en la ubicación del programa 'modelo.xls'", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al exportar a excel", "Error", JOptionPane.ERROR_MESSAGE);
